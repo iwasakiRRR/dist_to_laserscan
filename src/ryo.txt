@@ -1,0 +1,17 @@
+xterm -geometry 80x5+0+130   -e "/opt/ros/indigo/bin/roslaunch turtlebot_bringup minimal.launch" &
+sleep 10s
+xterm -geometry 80x5+0+230 -e "/opt/ros/indigo/bin/roslaunch turtlebot_bringup 3dsensor.launch" &
+sleep 5s
+xterm -geometry 80x5+0+330 -e "/opt/ros/indigo/bin/rqt -s kobuki_dashboard" &
+sleep 5s
+xterm -geometry 80x5+0+430 -e "/opt/ros/indigo/bin/roslaunch turtlebot_navigation amcl_demo.launch map_file:=/home/ryo/map/mymap4.yaml" &
+sleep 5s
+xterm -geometry 80x5+0+530 -e "/opt/ros/indigo/bin/roslaunch turtlebot_rviz_launchers view_navigation.launch" &
+sleep 5s
+xterm -geometry 80x5+0+630 -e "/opt/ros/indigo/bin/rosrun tf static_transform_publisher 0 0 0.1 0 0 0 /base_link /base_laser_link 10" &
+sleep 5s
+xterm -geometry 80x5+0+730 -e "/opt/ros/indigo/bin/rosrun py_serial py_serial.py" &
+sleep 5s
+xterm -geometry 80x5+0+1030 -e "/opt/ros/indigo/bin/rosrun dist_to_laserscan dist_to_laserscan" &
+sleep 5s
+xterm -geometry 80x5+0+630 -e "/opt/ros/indigo/bin/rosrun tf static_transform_publisher 0 0 0.05 0 0 0 /base_link /laser_frame 10"
